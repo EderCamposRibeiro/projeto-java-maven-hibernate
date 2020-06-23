@@ -41,5 +41,10 @@ public class HibernateUtil {
 		return factory.createEntityManager();/*Prove a parte de persistência*/
 	}
 	
+	/*Busca a Chave Primária*/
+	public static Object gerPrimaryKey(Object entity) {
+		return factory.getPersistenceUnitUtil().getIdentifier(entity);
+	}
+	
 	
 }

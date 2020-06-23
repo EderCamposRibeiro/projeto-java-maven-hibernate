@@ -17,4 +17,19 @@ public class DaoGeneric<E> {
 		transaction.commit();
 	}
 	
+	public E pesquisar(E entidade) {
+		Object id = HibernateUtil.gerPrimaryKey(entidade);
+		
+		E e = (E) entityManager.find(entidade.getClass(), id);
+		
+		return e;
+	}
+	
+	/*Outra forma de fazer o pesquisar genérico*/
+	public E pesquisar2(Long id, Class<E> entidade) {
+		
+		E e = (E) entityManager.find(entidade, id);
+		
+		return e;
+	}
 }
