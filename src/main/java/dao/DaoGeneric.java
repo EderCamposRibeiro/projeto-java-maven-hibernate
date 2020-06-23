@@ -16,6 +16,16 @@ public class DaoGeneric<E> {
 		entityManager.persist(entidade);
 		transaction.commit();
 	}
+
+	/*Salva ou Atualiza*/
+	public E updateMerge(E entidade) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		E entidadeSalva = entityManager.merge(entidade);
+		transaction.commit();
+		
+		return entidadeSalva;
+	}	
 	
 	public E pesquisar(E entidade) {
 		Object id = HibernateUtil.gerPrimaryKey(entidade);
