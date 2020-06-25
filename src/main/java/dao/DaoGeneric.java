@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -59,6 +61,19 @@ public class DaoGeneric<E> {
 				                        " where id =" + id).executeUpdate(); //Faz o delete apesar de ser "update"
 		transaction.commit();/*Grava a alteração de forma definitiva no BD*/
 		
+	}
+	
+	public List<E> listar(Class<E> entidade) {
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		
+		String sql = "from " + entidade.getName();
+		
+		List<E> lista = entityManager.createQuery(sql).getResultList();
+		
+		transaction.commit();
+		
+		return lista;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package projetojavamavenhibernate;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import dao.DaoGeneric;
@@ -65,6 +67,20 @@ public class TesteHibernate {
 		UsuarioPessoa pessoa = daoGeneric.pesquisar2(4L, UsuarioPessoa.class);
 		
 		daoGeneric.deletarPorId(pessoa);
+
+		}	
+	
+	/*Teste para consultar lista*/
+	@Test
+	public void testeConsultarLista() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		List<UsuarioPessoa> lista = daoGeneric.listar(UsuarioPessoa.class);
+		
+		for (UsuarioPessoa usuarioPessoa : lista) {
+			System.out.println(usuarioPessoa);
+			System.out.println("--------------------------------------------");
+		}
 
 		}	
 
