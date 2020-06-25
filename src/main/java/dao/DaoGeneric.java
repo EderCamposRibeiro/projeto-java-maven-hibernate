@@ -42,4 +42,34 @@ public class DaoGeneric<E> {
 		
 		return e;
 	}
+	
+	public void deletarPorId(E entidade) {
+		
+		Object id = HibernateUtil.gerPrimaryKey(entidade);
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		transaction.begin();
+		
+		/*Evita que vários erros venham a ocorres.
+		 *Exemplo: - objeto sendo controlado na sessão
+		 *         - objeto com múltiplas sessões
+		 *         - cache
+		 *->Dessa forma manda o Delete direto para o BD */
+		entityManager.createNativeQuery(" delete from " + entidade.getClass().getSimpleName().toLowerCase() + 
+				                        " where id =" + id).executeUpdate(); //Faz o delete apesar de ser "update"
+		transaction.commit();/*Grava a alteração de forma definitiva no BD*/
+		
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+

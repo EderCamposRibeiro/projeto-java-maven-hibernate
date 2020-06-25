@@ -13,11 +13,11 @@ public class TesteHibernate {
 		
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		
-		pessoa.setLogin("admin 2");
-		pessoa.setNome("Eder 2");
+		pessoa.setLogin("teste deleta 2");
+		pessoa.setNome("Deleta");
 		pessoa.setSenha("123");
-		pessoa.setSobrenome("Campos Ribeiro");
-		pessoa.setEmail("edertestejava@gmail.com");
+		pessoa.setSobrenome("Para Deletar");
+		pessoa.setEmail("deleta@gmail.com");
 		
 		daoGeneric.salvar(pessoa);
 	}
@@ -55,6 +55,17 @@ public class TesteHibernate {
 		pessoa = daoGeneric.updateMerge(pessoa);
 		
 		System.out.println(pessoa);
+		}	
+	
+	/*Teste para deletar*/
+	@Test
+	public void testeDelete() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+		
+		UsuarioPessoa pessoa = daoGeneric.pesquisar2(4L, UsuarioPessoa.class);
+		
+		daoGeneric.deletarPorId(pessoa);
+
 		}	
 
 }
