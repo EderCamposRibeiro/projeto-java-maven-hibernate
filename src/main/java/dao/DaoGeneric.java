@@ -11,6 +11,11 @@ public class DaoGeneric<E> {
 	
 	private EntityManager entityManager = HibernateUtil.getEntityManager();
 	
+	/*Com isso podemos acessar o EntityManager de outras partes do projeto*/
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+	
 	public void salvar(E entidade) {
 		/*Iniciar uma transação*/
 		EntityTransaction transaction = entityManager.getTransaction();
