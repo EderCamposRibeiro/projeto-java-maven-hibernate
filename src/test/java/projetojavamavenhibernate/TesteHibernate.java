@@ -112,9 +112,23 @@ public class TesteHibernate {
 			System.out.println(usuarioPessoa);
 			System.out.println("-------------------------------");
 		}
- 		
+	}
+	
+	@Test
+	public void testeQueryListParameter() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 		
-	}	
+		List<UsuarioPessoa> list = daoGeneric.
+				getEntityManager().createQuery(" from UsuarioPessoa where nome = :nome ")
+				.setParameter("nome", "Eder")
+				.getResultList();
+		
+		for (UsuarioPessoa usuarioPessoa : list) {
+			System.out.println(usuarioPessoa);
+			System.out.println("-------------------------------");
+		}
+		
+	}
 	
 	
 
